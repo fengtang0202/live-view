@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="blue" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_512114_1iw2bou995sl9pb9.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style media="screen">
+    @font-face
+     {
+      font-family: "NotoSansHans-Thin";
+      src: url('./font/NotoSansHans-Thin-Windows.otf'),
+           url("./font/NotoSansHans-Thin-Windows.ttf") format('truetype');
+     }
+     @font-face {
+        font-family: "NotoSansHans-Bold";
+        src:url("./font/NotoSansHans-Bold.otf") ,
+           url("./font//NotoSansHans-Bold.ttf") format('truetype');
+       }
+             body{margin: 0;background-color:#EBEBEB;padding:0;font-family:"NotoSansHans-Thin";}
+             img{ vertical-align:top;}
+             p{margin:0;}
+             .header{position:relative;top:0;left:0;background-color: #fff;width:100%}
+             .details{display:flex;flex-direction:row;width:100%;}
+             .iconfont{font-size: .35rem;margin-left:.27rem;color:#999999}
+            .title{font-size: .21rem;}.title_1{color:#f33333}
+            .person{width:2.67rem;height:.67rem;background-color: rgba(255,255,255,0.8);position: absolute;top:.31rem;right:.27rem; border-radius:.27rem;}
+            .person .iconfont{margin-left:0 .27rem 0 .27rem;line-height: .67rem}
+            .nav{margin-top:.1rem;height:0.8rem;background-color: #fff;width:100%;display:flex;justify-content:space-between;}
+            .nav div{width:30%;height:100%;font-weight: normal;line-height: 0.8rem;font-size: .3rem;text-align: center;}
+            .nav div:last-child{background-color: #f33333;color:#fff}
+            .content{width:100%;min-height:6rem;position: relative;background-color: green;margin-top: .08rem;background-color: #fff;overflow-y:scroll;-webkit-overflow-scrolling : touch }
+            .content::-webkit-scrollbar {display: none;}
+            .content section{display:none;position: absolute;height:100%;top:0;left:0;}
+            .content .show{display: block;}
+            .timer_message{position:absolute;right:.53rem;line-height: 40px;}
+            .person_info{color:#003f8c;font-size:.35rem;line-height:40px;}
+            .message_details{color:#333;font-size:.32rem;display: flex;justify-content:space-around;flex-wrap: wrap;}
+            .message_details img{margin-bottom:.2rem}
+            .message_info_details{margin:.13rem 0 .13rem .13rem }
+            .info{width:90%;}
+            .user_message_info{overflow:hidden;}
+            .footer{position: fixed;bottom:0;line-height:0.8rem;height:1.18rem;width:100%;background-color: #fff}
+            #message{width:45%;height:.65rem;border:0;font-size:.24rem;padding-left: .27rem;border-radius: 1.2rem;background-color: #f3f3f3;outline:none;margin: .27rem }
+            #send{width: 2.15rem;height: .8rem;border:0;background-color: #F33333;border-radius: .5rem;outline:none;color:#fff;}
+            .user_message{position: relative;margin-right: .27rem;float:right;width:70%;background-color: #fff;padding: .13rem;}
+            .user_avatar{float:left}
+            .jiantou{width: 0;height: 0;border-top: .27rem solid transparent;border-right: .53rem solid #fff;border-bottom: .27rem solid transparent;position: absolute;left:-.5rem;  }
+            /*model*/
+            .active{color:#f33333;border-bottom:.07rem solid #f33333;}
+            .dialog_wrap{width:100%;display:none;height:100%;position:absolute;left:0;top:0;background-color:rgba(0,0,0,0.5)}
+            .dialog_1{position:absolute;top:40%;left:50%;}
+    </style>
+    <!--taobao fixible.js  -->
+    <script>
+        (function(designWidth, maxWidth) {
+            var doc = document,
+            win = window,
+            docEl = doc.documentElement,
+            remStyle = document.createElement("style"),
+            tid;
+
+            function refreshRem() {
+             var width = docEl.getBoundingClientRect().width;
+             maxWidth = maxWidth || 540;
+             width>maxWidth && (width=maxWidth);
+             var rem = width * 100 / designWidth;
+             remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+            }
+
+            if (docEl.firstElementChild) {
+             docEl.firstElementChild.appendChild(remStyle);
+            } else {
+             var wrap = doc.createElement("div");
+             wrap.appendChild(remStyle);
+             doc.write(wrap.innerHTML);
+             wrap = null;
+            }
+            //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+            refreshRem();
+
+            win.addEventListener("resize", function() {
+             clearTimeout(tid); //防止执行两次
+             tid = setTimeout(refreshRem, 300);
+            }, false);
+
+            win.addEventListener("pageshow", function(e) {
+             if (e.persisted) { // 浏览器后退的时候重新计算
+               clearTimeout(tid);
+               tid = setTimeout(refreshRem, 300);
+             }
+            }, false);
+
+            if (doc.readyState === "complete") {
+             doc.body.style.fontSize = "16px";
+            } else {
+             doc.addEventListener("DOMContentLoaded", function(e) {
+               doc.body.style.fontSize = "16px";
+             }, false);
+            }
+          })(750, 750);
+    </script>
+  </head>
+   <body>
+       <header class="header">
+          <img src="./images/bg.jpg" alt=""  style="width:100%;">
+           <div class='person'>
+            <i class='iconfont icon-touxiang-copy'></i>
+            <span class="title_1 title">999999</span>
+          </div>
+           <div class='details'>
+            <div class='timer'>
+              <i class='iconfont icon-shijian'></i>
+                <span class='title'>时间: <span class='title_1'>2018-2-25</span></span>
+            </div>
+            <div class='timer1'>
+              <i class='iconfont icon-daojishi'></i>
+                <span class='title'>倒计时 <span class='title_1'>50天20时50秒</span></span>
+            </div>
+           </div>
+           <div class='address'>
+            <i class='iconfont icon-icon-yxj-address'></i>
+              <span class='title'>地址: <span class='title_1'>杭州市西湖区西湖广告大厦10楼</span></span>
+           </div>
+       </header>
+        <nav class="nav">
+            <div class='live active'>图文直播</div>
+            <div class='chat'>聊天室</div>
+            <div id="concat_us">关注我们</div>
+        </nav>
+       <div class="content">
+         <!-- 图文直播 -->
+         <section class="live_content show" >
+           <div class='message_info'>
+               <div class='message_info_details'>
+                  <img class='avatar' src="./images/avatar.png" alt="">
+                  <span class='person_info'>主持人 直播妹</span>
+                  <img src="./images/erweima.png"  alt="">
+                  <span class='timer_message title_1'>18:00</span>
+               </div>
+               <div  class="message_details">
+                  <img src="./images/1.png" style="width:100%;" alt="">
+                  <p class="info">
+                      体育知识全网罗，达人带你玩转运动！新鲜、专业、逗趣的体育信
+                      息，运动项目背后不为人知的精彩故事，尽在嘿！动起来。
+                 </p>
+              </div>
+           </div>
+           <div class='message_info'>
+               <div class='message_info_details'>
+                  <img class='avatar' src="./images/avatar.png"  alt="">
+                  <span class='person_info'>主持人 直播妹</span>
+                  <img src="./images/erweima.png"  alt="">
+                  <span class='timer_message title_1'>18:00</span>
+               </div>
+               <div  class="message_details">
+                  <img src="./images/1.png" style="width:40%;height:40%" alt="">
+                  <img src="./images/1.png" style="width:40%;height:40%" alt="">
+                  <p class="info">
+                      体育知识全网罗，达人带你玩转运动！新鲜、专业、逗趣的体育信
+                      息，运动项目背后不为人知的精彩故事，尽在嘿！动起来。
+                 </p>
+              </div>
+           </div>
+           <div class='message_info'>
+               <div class='message_info_details'>
+                  <img class='avatar' src="./images/avatar.png" alt="">
+                  <span class='person_info'>主持人 直播妹</span>
+                  <img src="./images/erweima.png"  alt="">
+                  <span class='timer_message title_1 '>18:00</span>
+               </div>
+               <div  class="message_details">
+                  <img src="./images/1.png" style="width:40%;height:40%;" alt="">
+                  <img src="./images/1.png" style="width:40%;height:40%;" alt="">
+                  <img src="./images/1.png" style="width:40%;height:40%;" alt="">
+                  <img src="./images/1.png" style="width:40%;height:40%;" alt="">
+                  <p class="info">
+                      体育知识全网罗，达人带你玩转运动！新鲜、专业、逗趣的体育信
+                      息，运动项目背后不为人知的精彩故事，尽在嘿！动起来。
+                  </p>
+              </div>
+           </div>
+         </section>
+        <!-- 聊天室 -->
+         <section class='chat_content' style="background-color:#EBEBEB;">
+           <div class='user_message_info'>
+               <div class='message_info_details'>
+                  <img class='user_avatar' src="./images/avatar.png" alt="">
+               </div>
+               <div class="user_message">
+                 <i class='jiantou'></i>
+                 <span class='person_info'>徐三火</span>
+                 <span class='timer_message title_1'>18:00</span>
+                  <p>
+                      体育知识全网罗，达人带你玩转运动！新鲜、专业、逗趣的体育信
+                      息，运动项目背后不为人知的精彩故事，尽在嘿！动起来。
+                  </p>
+               </div>
+           </div>
+           <div class='user_message_info'>
+               <div class='message_info_details'>
+                  <img class='user_avatar' src="./images/avatar.png" alt="">
+               </div>
+               <div class="user_message">
+                 <i class='jiantou'></i>
+                 <span class='person_info'>徐二火</span>
+                 <span class='timer_message title_1'>18:00</span>
+                  <p>
+                      体育知识全网罗，达人带你玩转运动！新鲜、专业、逗趣的体育信
+                      息，运动项目背后不为人知的精彩故事，尽在嘿！动起来。
+                  </p>
+               </div>
+           </div>
+         </section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+       </div>
+       <footer class='footer'>
+            <input type="text" id="message" placeholder="该出声时就出声,不要憋坏了..." name="" value="">
+            <button type="button" id='send'>发送</button>
+       </footer>
+       <div class="dialog_wrap">
+            <div class='dialog_1'>
+              <img src="./images/erweima.png" alt="">
+            </div>
+       </div>
+       <script src='./js/jquery-1.8.3.min.js'></script>
+       <script>
+             $(".nav div:not(:last-child)").on("touchstart",function(){
+               $(this).addClass("active").siblings().removeClass("active")
+               let show_content=$(".content section").eq($(this).index()).addClass("show").siblings().removeClass("show")
+             })
+             // $('#message').bind("focus",function(){
+             //   $(".footer").css({"position":"static","bottom":0});
+             //   }).bind("blur",function(){
+             //  $(".footer").css("position","fixed");
+             // });
+             let prHandle=function(e){e.preventDefault()}
+             $(".header").on("touchmove",prHandle,false)
+             $(".footer").on("touchmove",prHandle,false)
+             $(".nav").on("touchmove",prHandle,false)
+             $("#message").on("focus",function(){
+               setTimeout(function(){
+                   document.body.scrollTop = document.body.scrollHeight;
+                   console.log(1)
+               },300);
+             })
+                $(document).on('touchstart', function (e) {
+                 if (!$(e.target).is('#message') && $('#message').is(':focus')) {
+                 document.activeElement.blur();
+              }
+              });
+            $("#concat_us").on("touchstart",function(){
+              $(".dialog_wrap").show()
+              $(".dialog_1").addClass("animated fadeInDown")
+            })
+            $(".dialog_wrap").on("touchstart",function(){
+              $(this).hide()
+            })
+       </script>
+  </body>
+</html>
